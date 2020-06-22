@@ -6,14 +6,15 @@ import 'package:lojavirtual/models/user_manager.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passlController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: const Text("Entrar"),
         centerTitle: true,
@@ -28,7 +29,7 @@ class LoginScreen extends StatelessWidget {
               shrinkWrap: true,
               children: <Widget>[
                 TextFormField(
-                  controller: emailController,
+                    controller: emailController,
                     decoration: const InputDecoration(hintText: 'E-mail'),
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
@@ -40,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextFormField(
-                  controller: passlController,
+                    controller: passlController,
                     decoration: const InputDecoration(hintText: 'Senha'),
                     autocorrect: false,
                     obscureText: true,
@@ -64,10 +65,20 @@ class LoginScreen extends StatelessWidget {
                   height: 44,
                   child: RaisedButton(
                     onPressed: () {
-                      if(formKey.currentState.validate()){
+                      if (formKey.currentState.validate()) {
                         context.read<UseraManager>().sigIn(
-                          User(email: emailController.text, password: passlController.text)
-                        );
+                            user: User(
+                                email: emailController.text,
+                                password: passlController.text),
+                            onFail: (e) {
+                              scaffoldKey.currentState.showSnackBar(SnackBar(
+                                content: Text('Falha ao entrar: $e'),
+                                backgroundColor: Colors.red,
+                              ));
+                            },
+                            onSuccess: () {
+                              // TODO: FECHAR TELA LOGIN
+                            });
                       }
                     },
                     color: Theme.of(context).primaryColor,
