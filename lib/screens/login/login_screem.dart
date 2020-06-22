@@ -86,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                                         ));
                                       },
                                       onSuccess: () {
-                                        // TODO: FECHAR TELA LOGIN
+                                        Navigator.of(context).pop();
                                       });
                                 }
                               },
@@ -96,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                         textColor: Colors.white,
                         child: userManager.loading
                             ? CircularProgressIndicator(
-                          valueColor:  AlwaysStoppedAnimation(Colors.white),
+                        //  valueColor:  AlwaysStoppedAnimation(Colors.white),
                         )
                             : const Text(
                                 'Entrar',
