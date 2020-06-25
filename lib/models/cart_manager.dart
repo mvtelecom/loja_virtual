@@ -58,7 +58,7 @@ class CartManager extends ChangeNotifier {
 
       _updateCartProduct(cartProduct);
     }
-    print(productsPrice);
+    notifyListeners();
   }
 
   void removeOfCart(CartProduct cartProduct) {

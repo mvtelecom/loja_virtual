@@ -4,7 +4,7 @@ import 'package:lojavirtual/models/product.dart';
 
 import 'item_size.dart';
 
-class CartProduct extends ChangeNotifier{
+class CartProduct extends ChangeNotifier {
   CartProduct.fromProduct(this.product) {
     productId = product.id;
     quantity = 1;
@@ -17,10 +17,10 @@ class CartProduct extends ChangeNotifier{
     quantity = document.data['quantity'] as int;
     size = document.data['size'] as String;
 
-    firestore
-        .document('products/$productId')
-        .get()
-        .then((doc) => product = Product.fromDocument(doc));
+    firestore.document('products/$productId').get().then((doc) {
+      product = Product.fromDocument(doc);
+      notifyListeners();
+    });
   }
 
   final Firestore firestore = Firestore.instance;
@@ -56,20 +56,19 @@ class CartProduct extends ChangeNotifier{
     return product.id == productId && product.selectedSize.name == size;
   }
 
-  void increment(){
+  void increment() {
     quantity++;
     notifyListeners();
   }
 
-  void decrement(){
+  void decrement() {
     quantity--;
     notifyListeners();
   }
 
   bool get hasStock {
     final size = itemSize;
-    if(size == null) return false;
+    if (size == null) return false;
     return size.stock >= quantity;
   }
-
 }
