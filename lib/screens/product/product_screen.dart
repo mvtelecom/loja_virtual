@@ -2,9 +2,11 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/product.dart';
+import 'package:provider/provider.dart';
+
+import 'components/size_widget.dart';
 
 class ProductScreen extends StatelessWidget {
-
   const ProductScreen(this.product);
 
   final Product product;
@@ -24,7 +26,7 @@ class ProductScreen extends StatelessWidget {
           AspectRatio(
             aspectRatio: 1,
             child: Carousel(
-              images: product.images.map((url){
+              images: product.images.map((url) {
                 return NetworkImage(url);
               }).toList(),
               dotSize: 4,
@@ -41,10 +43,7 @@ class ProductScreen extends StatelessWidget {
               children: <Widget>[
                 Text(
                   product.name,
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600
-                  ),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8),
@@ -68,18 +67,25 @@ class ProductScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16, bottom: 8),
                   child: Text(
                     'Descrição',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500
-                    ),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 Text(
                   product.description,
-                  style: const TextStyle(
-                      fontSize: 16
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16, bottom: 8),
+                  child: Text(
+                    'Tamanhos',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
+                Wrap(
+                  children: product.sizes.map((s) {
+                    return SizeWidget(size: s);
+                  }).toList(),
+                )
               ],
             ),
           )
