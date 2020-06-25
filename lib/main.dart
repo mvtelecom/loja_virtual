@@ -4,8 +4,11 @@ import 'package:lojavirtual/models/product_manager.dart';
 import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/base/base_screen.dart';
 import 'package:lojavirtual/screens/login/login_screem.dart';
+import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/siginup/signup_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'models/product.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +44,9 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => LoginScreen());
             case '/signup':
               return MaterialPageRoute(builder: (_) => SignUpScreen());
+            case '/product':
+              return MaterialPageRoute(
+                  builder: (_) => ProductScreen(settings.arguments as Product));
             case '/base':
             default:
               return MaterialPageRoute(builder: (_) => BaseScreen());
