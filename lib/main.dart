@@ -8,6 +8,7 @@ import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/siginup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'models/cart_manager.dart';
 import 'models/product.dart';
 
 void main() {
@@ -26,7 +27,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
           lazy: false,
-        )
+        ),
+        Provider(
+          create: (_) => CartManager(),
+          lazy: false,
+        ),
       ],
       child: MaterialApp(
         title: 'Lady Fashion',
