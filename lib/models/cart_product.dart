@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/product.dart';
 
 import 'item_size.dart';
 
-class CartProduct {
+class CartProduct extends ChangeNotifier{
   CartProduct.fromProduct(this.product) {
     productId = product.id;
     quantity = 1;
@@ -50,4 +51,15 @@ class CartProduct {
   bool stackable(Product product) {
     return product.id == productId && product.selectedSize.name == size;
   }
+
+  void increment(){
+    quantity++;
+    notifyListeners();
+  }
+
+  void decrement(){
+    quantity--;
+    notifyListeners();
+  }
+
 }
