@@ -10,6 +10,7 @@ import 'package:lojavirtual/screens/siginup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'models/cart_manager.dart';
+import 'models/home_manager.dart';
 import 'models/product.dart';
 
 void main() {
@@ -27,6 +28,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => ProductManager(),
+          lazy: false,
+        ),
+        Provider(
+          create: (_) => HomeManager(),
           lazy: false,
         ),
         ChangeNotifierProxyProvider<UserManager, CartManager>(
