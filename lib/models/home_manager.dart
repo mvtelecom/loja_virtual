@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/section.dart';
 
 class HomeManager {
@@ -17,7 +18,6 @@ class HomeManager {
       for(final DocumentSnapshot document in snapshot.documents){
         sections.add(Section.fromDocument(document));
       }
-      print(sections);
     });
   }
-}
+} 

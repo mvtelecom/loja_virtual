@@ -10,6 +10,4 @@ class SectionItem {
   String toString() {
     return 'SectionItem{image: $image}';
   }
-
-} 
-
+}
