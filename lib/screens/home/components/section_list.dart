@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lojavirtual/models/section.dart';
 import 'package:lojavirtual/screens/home/components/section_header.dart';
 
+import 'item_tile.dart';
+
 class SectionList extends StatelessWidget {
 
   const SectionList(this.section);
@@ -21,13 +23,7 @@ class SectionList extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, index){
-                return AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.network(
-                      section.items[index].image,
-                      fit: BoxFit.cover,
-                    )
-                );
+                return ItemTile(section.items[index]);
               },
               separatorBuilder: (_, __) => const SizedBox(width: 4,),
               itemCount: section.items.length,
