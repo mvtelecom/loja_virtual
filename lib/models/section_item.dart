@@ -11,5 +11,5 @@ class SectionItem {
     return 'SectionItem{image: $image}';
   }
 
-
 } 
+

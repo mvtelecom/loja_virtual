@@ -17,7 +17,11 @@ class BaseScreen extends StatelessWidget {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
+
          HomeScreen(),
+
+          HomeScreen(),
+
           ProductsScreen(),
           Container(
             color: Colors.yellow,

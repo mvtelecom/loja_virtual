@@ -13,9 +13,12 @@ class Section {
 
   String name;
   String type;
+
   List<SectionItem> items;
 
-
-
+  @override
+  String toString() {
+    return 'Section{name: $name, type: $type, items: $items}';
+  }
 
 }

@@ -8,6 +8,7 @@ import 'package:lojavirtual/screens/login/login_screem.dart';
 import 'package:lojavirtual/screens/product/product_screen.dart';
 import 'package:lojavirtual/screens/siginup/signup_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:lojavirtual/models/home_manager.dart';
 
 import 'models/cart_manager.dart';
 import 'models/home_manager.dart';
