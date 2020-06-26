@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lojavirtual/common/custom_drawer/custom_drawer.dart';
 import 'package:lojavirtual/models/page_manager.dart';
+import 'package:lojavirtual/models/user_manager.dart';
 import 'package:lojavirtual/screens/home/home_screen.dart';
 import 'package:lojavirtual/screens/login/login_screem.dart';
 import 'package:lojavirtual/screens/products/products_screen.dart';
@@ -13,23 +14,47 @@ class BaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider(
       create: (_) => PageManager(pageController),
-      child: PageView(
-        controller: pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: <Widget>[
+      child: Consumer<UserManager>(
+        builder: (_, userManager, __) {
+          return PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: <Widget>[
 
-         HomeScreen(),
+              HomeScreen(),
 
-          HomeScreen(),
+              ProductsScreen(),
 
-          ProductsScreen(),
-          Container(
-            color: Colors.yellow,
-          ),
-          Container(
-            color: Colors.green,
-          ),
-        ],
+              Scaffold(
+                drawer: CustomDrawer(),
+                appBar: AppBar(
+                  title: const Text('Home3'),
+                ),
+              ),
+              Scaffold(
+                drawer: CustomDrawer(),
+                appBar: AppBar(
+                  title: const Text('Home4'),
+                ),
+              ),
+              if(userManager.adminEnabled)
+                ...[
+                  Scaffold(
+                    drawer: CustomDrawer(),
+                    appBar: AppBar(
+                      title: const Text('Usuários'),
+                    ),
+                  ),
+                  Scaffold(
+                    drawer: CustomDrawer(),
+                    appBar: AppBar(
+                      title: const Text('Pedidos'),
+                    ),
+                  ),
+                ]
+            ],
+          );
+        },
       ),
     );
   }
